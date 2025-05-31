@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Glamour Salon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .services-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover .service-icon {
+            background-color: #d4a373;
+            color: white;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .price-tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: #d4a373;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-amber-700">
+                    <span class="text-gray-700">Glamour</span>Salon
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">About</a>
+                    <a href="services.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Services</a>
+                    <a href="contact.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="book.html" class="bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                        Book Now
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-amber-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700 hover:text-amber-700">About</a>
+                <a href="services.html" class="block py-2 text-gray-700 hover:text-amber-700">Services</a>
+                <a href="contact.html" class="block py-2 text-gray-700 hover:text-amber-700">Contact</a>
+                <a href="book.html" class="block mt-2 bg-amber-700 text-white px-4 py-2 rounded-full text-center">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="services-hero bg-cover bg-center min-h-[60vh] flex items-center pt-20">
+        <div class="container mx-auto px-4 py-20 text-white text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Our Services</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto">Premium beauty services tailored to your unique style</p>
+        </div>
+    </section>
+
+    <!-- Services Categories -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Explore Our Services</h2>
+                <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="service-filter-btn active px-6 py-2 rounded-full bg-amber-700 text-white font-medium" data-filter="all">
+                    All Services
+                </button>
+                <button class="service-filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-amber-100 font-medium" data-filter="hair">
+                    Hair Services
+                </button>
+                <button class="service-filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-amber-100 font-medium" data-filter="color">
+                    Hair Coloring
+                </button>
+                <button class="service-filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-amber-100 font-medium" data-filter="treatment">
+                    Treatments
+                </button>
+                <button class="service-filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-amber-100 font-medium" data-filter="spa">
+                    Spa Services
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="hair">
+                    <div class="relative">
+                        <img src="images/woman haircut.jpeg"
+                              alt="Women's Haircut"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$65+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Women's Haircut</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Precision haircut tailored to your face shape and lifestyle, including shampoo and blowout.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="hair">
+                    <div class="relative">
+                        <img src="images/beard.jpeg"
+                              alt="Men's Haircut"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$45+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Men's Haircut</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Classic or contemporary styles with precision clipper and scissor work, including neck shave.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="hair">
+                    <div class="relative">
+                        <img src="images/condrow.jpeg"
+                              alt="Men's conrows"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$45+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-male"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Men's condrows</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Classic or contemporary condrows with a clean taper fade and clean lines, including neck shave.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="hair">
+                    <div class="relative">
+                        <img src="images/kids.jpeg"
+                              alt="kids hairstyles"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$45+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-female"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Kids hairstyles</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            beautiful condrows and braids for your young ones that make them look cute.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="color">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                              alt="Balayage Highlights"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$120+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Balayage Highlights</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Hand-painted highlights for a natural, sun-kissed look with customized color placement.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="color">
+                    <div class="relative">
+                        <img src="images/hair coloring.jpeg"
+                              alt="Full Color Service"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$85+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Full Color Service</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Complete single-process color with ammonia-free formula for vibrant, long-lasting results.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 7 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="treatment">
+                    <div class="relative">
+                        <img src="images/treatment.jpeg"
+                              alt="Keratin Treatment"
+                              class="w-full h-48 object-cover">
+                        <div class="price-ttag">$250+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Keratin Treatment</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Revolutionary smoothing treatment that eliminates frizz while maintaining natural movement.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Service Card 8 -->
+                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="Hair">
+                    <div class="relative">
+                        <img src="images/braids.jpeg"
+                              alt="knotless braids"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$55+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">knotless braids</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            New trending knotless braids for a lastong hairstyle and a beautiful look.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Service Card 9 -->
+                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="hairstyles">
+                    <div class="relative">
+                        <img src="images/installation.jpeg"
+                              alt="hair installation"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$55+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Hair installation</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Hair installation and extensions that will make you like a slay queen.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Service Card 10 -->
+                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="Hair Services">
+                    <div class="relative">
+                        <img src="images/special.jpeg"
+                              alt="special event hairstyles"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$55+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">special event hairstyle</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Best hairstyles that are suitable for special events like weddings and graduations.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Service Card 11 -->
+                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="spa">
+                    <div class="relative">
+                        <img src="images/3.jpeg"
+                              alt="carrot styles"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$55+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">carrot hairstyles</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            beautiful deaigner carrot lines with any length of your choice.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Service Card 12 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300" data-category="spa">
+                    <div class="relative">
+                        <img src="images/scalp massage.jpeg"
+                              alt="Scalp Massage"
+                              class="w-full h-48 object-cover">
+                        <div class="price-tag">$55+</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="service-icon w-16 h-16 -mt-12 mx-auto rounded-full bg-white border-4 border-amber-100 flex items-center justify-center text-amber-700 text-2xl mb-4 transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">Scalp Massage</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            Therapeutic massage with essential oils to stimulate circulation and promote hair health.
+                        </p>
+                        <div class="text-center">
+                            <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition duration-300">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Special Packages -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Special Packages</h2>
+            <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Package 1 -->
+            <div class="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden border-2 border-amber-200 transform hover:scale-105 transition duration-300">
+                <div class="bg-amber-700 text-white py-4 px-6">
+                    <h3 class="text-xl font-bold">The Glamour Experience</h3>
+                    <p class="text-amber-100">Our Signature Service</p>
+                </div>
+                <div class="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-4xl font-bold text-gray-800">P199</span>
+                            <span class="text-gray-500 ml-2">/ session</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Custom Haircut & Style</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Full Color or Highlights</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Deep Conditioning Treatment</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Scalp Massage</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Blowout & Finishing</span></li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <a href="book.html" class="inline-block w-full bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                            Book Package
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden border-2 border-amber-200 transform hover:scale-105 transition duration-300">
+                <div class="bg-amber-700 text-white py-4 px-6">
+                    <h3 class="text-xl font-bold">Bridal Beauty</h3>
+                    <p class="text-amber-100">Your Special Day</p>
+                </div>
+                <div class="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-4xl font-bold text-gray-800">P350</span>
+                            <span class="text-gray-500 ml-2">/ package</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Pre-Wedding Consultation</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Wedding Day Hair & Makeup</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Bridal Trial Run</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Touch-Up Kit</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Emergency Support</span></li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <a href="book.html" class="inline-block w-full bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                            Book Package
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="flex flex-col h-full bg-white rounded-xl shadow-lg overflow-hidden border-2 border-amber-200 transform hover:scale-105 transition duration-300">
+                <div class="bg-amber-700 text-white py-4 px-6">
+                    <h3 class="text-xl font-bold">Maintenance Membership</h3>
+                    <p class="text-amber-100">Regular Care Program</p>
+                </div>
+                <div class="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                        <div class="flex items-center justify-center mb-4">
+                            <span class="text-4xl font-bold text-gray-800">P99</span>
+                            <span class="text-gray-500 ml-2">/ month</span>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>2 Haircuts per Month</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>1 Deep Conditioning Treatment</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>10% Off All Other Services</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Priority Booking</span></li>
+                            <li class="flex items-center"><i class="fas fa-check text-amber-700 mr-2"></i><span>Free Product Samples</span></li>
+                        </ul>
+                    </div>
+                    <div class="text-center">
+                        <a href="book.html" class="inline-block w-full bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                            Book Package
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+
+   <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                        <span class="text-white">Glamour</span>Salon
+                    </h3>
+                    <p class="text-gray-400">
+                        Your premier destination for luxury hair care and styling services in New York.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-amber-500 transition duration-300">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Services</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-amber-500 transition duration-300">Our Team</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Haircuts</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Coloring</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Styling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Extensions</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Treatments</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <address class="text-gray-400 not-italic">
+                        <p class="mb-2">Plot 5656 Tlokweng</p>
+                        <p class="mb-2">Gaborone, Botswana</p>
+                        <p class="mb-2">Phone: (+267) 74776893</p>
+                        <p>Email: laonemguni@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Glamour Salon. All rights reserved.
+                </p>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Service Filtering
+        const filterButtons = document.querySelectorAll('.service-filter-btn');
+        const serviceCards = document.querySelectorAll('.service-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active', 'bg-amber-700', 'text-white'));
+                filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-amber-100'));
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-amber-700', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-amber-100');
+                
+                const filter = button.dataset.filter;
+                
+                // Show/hide service cards based on filter
+                serviceCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

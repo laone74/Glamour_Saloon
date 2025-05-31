@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamour Salon - Luxury Hair Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1595475884562-073c30d45670?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            transition: all 0.3s;
+        }
+        
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-amber-700">
+                    <span class="text-gray-700">Glamour</span>Salon
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">About</a>
+                    <a href="services.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Services</a>
+                    <a href="#team" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Team</a>
+                    <a href="contact.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="book.html" class="bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                        Book Now
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-amber-700">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-amber-700">About</a>
+                <a href="#services" class="block py-2 text-gray-700 hover:text-amber-700">Services</a>
+                <a href="#team" class="block py-2 text-gray-700 hover:text-amber-700">Team</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-amber-700">Contact</a>
+                <a href="#booking" class="block mt-2 bg-amber-700 text-white px-4 py-2 rounded-full text-center">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg bg-cover bg-center min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 py-20 text-white">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Discover Your <span class="text-amber-300">Perfect Style</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8">
+                    Experience luxury hair care with our expert stylists and premium products
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="book.html" class="bg-amber-700 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300 transform hover:scale-105">
+                        Book an Appointment
+                    </a>
+                    <a href="services.html" class="border-2 border-white hover:bg-white hover:text-gray-800 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300">
+                        Our Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About Our Salon</h2>
+                <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Salon Interior" 
+                         class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Your Beauty Is Our Passion</h3>
+                    <p class="text-gray-600 mb-4">
+                        At Glamour Salon, we believe that everyone deserves to look and feel their best. Our team of highly trained professionals is dedicated to providing exceptional service in a relaxing and luxurious environment.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2010, we've been serving the community with top-quality hair care services for over a decade. We stay up-to-date with the latest trends and techniques to ensure you always leave our salon looking fabulous.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-scissors text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Expert Stylists</h4>
+                                <p class="text-gray-600 text-sm">Certified professionals with years of experience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-spa text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Premium Products</h4>
+                                <p class="text-gray-600 text-sm">Only the highest quality hair care products</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-heart text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Personalized Service</h4>
+                                <p class="text-gray-600 text-sm">Customized treatments for your unique needs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-award text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Award Winning</h4>
+                                <p class="text-gray-600 text-sm">Recognized for excellence in hair care</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition duration-300">
+                        Book Your Visit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We offer a wide range of premium hair services to help you look and feel your best</p>
+                <div class="w-20 h-1 bg-amber-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/precision haircut.jpeg" 
+                             alt="Haircut" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Precision Haircut</h3>
+                        <p class="text-gray-600 mb-4">Expert haircuts tailored to your face shape and lifestyle</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P45</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/professional hair coloring.jpeg" 
+                             alt="Coloring" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Professional Coloring</h3>
+                        <p class="text-gray-600 mb-4">From subtle highlights to bold transformations</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P75</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/special occation hairstyle.jpeg" 
+                             alt="Styling" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Special Occasion Styling</h3>
+                        <p class="text-gray-600 mb-4">Perfect looks for weddings, proms, and special events</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P100</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/extension.jpeg" 
+                             alt="Extensions" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Hair Extensions</h3>
+                        <p class="text-gray-600 mb-4">High-quality extensions for instant length and volume</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P150</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/hair treatment.jpeg" 
+                             alt="Treatment" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Hair Treatments</h3>
+                        <p class="text-gray-600 mb-4">Restorative treatments for damaged or dry hair</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P50</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden service-card transition duration-300 hover:shadow-xl">
+                    <div class="service-img overflow-hidden h-64 transition duration-500">
+                        <img src="images/beard groaming.jpeg" 
+                             alt="Beard" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Beard Grooming</h3>
+                        <p class="text-gray-600 mb-4">Professional beard trims and styling for gentlemen</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">From P30</span>
+                            <a href="book.html" class="text-amber-700 hover:text-amber-600 font-medium flex items-center">
+                                Book Now <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="book.html" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-8 py-3 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                    View All Services & Book Appointment
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Work</h2>
+                <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="images/elegant undo.jpeg" 
+                         alt="Hairstyle 1" 
+                         class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <h3 class="text-white text-xl font-bold">Elegant Updo</h3>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="images/vibrant colors.jpeg" 
+                         alt="Hairstyle 2" 
+                         class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <h3 class="text-white text-xl font-bold">Vibrant Colors</h3>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="images/modern bob.jpeg" 
+                         alt="Hairstyle 3" 
+                         class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <h3 class="text-white text-xl font-bold">Modern Bob</h3>
+                    </div>
+                </div>
+                
+                <div class="relative group overflow-hidden rounded-lg h-64">
+                    <img src="images/wedding style.jpeg" 
+                         alt="Hairstyle 4" 
+                         class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <h3 class="text-white text-xl font-bold">Wedding Style</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Our talented team of professionals is dedicated to making you look and feel your best</p>
+                <div class="w-20 h-1 bg-amber-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center team-member transition duration-300 hover:shadow-xl">
+                    <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-amber-100 mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" 
+                             alt="Sarah Johnson" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Sarah Johnson</h3>
+                    <p class="text-amber-700 font-medium mb-2">Founder & Master Stylist</p>
+                    <p class="text-gray-600 text-sm mb-4">20+ years of experience in precision cutting and color</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center team-member transition duration-300 hover:shadow-xl">
+                    <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-amber-100 mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" 
+                             alt="Emily Rodriguez" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Emily Rodriguez</h3>
+                    <p class="text-amber-700 font-medium mb-2">Color Specialist</p>
+                    <p class="text-gray-600 text-sm mb-4">Certified in advanced coloring techniques</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center team-member transition duration-300 hover:shadow-xl">
+                    <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-amber-100 mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" 
+                             alt="Michael Chen" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Michael Chen</h3>
+                    <p class="text-amber-700 font-medium mb-2">Men's Grooming Expert</p>
+                    <p class="text-gray-600 text-sm mb-4">Specializes in modern men's cuts and beard styling</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md text-center team-member transition duration-300 hover:shadow-xl">
+                    <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-amber-100 mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" 
+                             alt="Jessica Williams" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">Jessica Williams</h3>
+                    <p class="text-amber-700 font-medium mb-2">Extension Specialist</p>
+                    <p class="text-gray-600 text-sm mb-4">Certified in various extension techniques</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-amber-700">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+   
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Contact Us</h2>
+                <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Get In Touch</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Address</h4>
+                                <p class="text-gray-600">Plot 5656, Tlokweng<br>Gaborone, Botswana</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone-alt text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">(+267) 74776893</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">laonemguni@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-amber-700"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Hours</h4>
+                                <p class="text-gray-600">
+                                    Monday - Friday: 9am - 7pm<br>
+                                    Saturday: 10am - 2pm<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-gray-800 mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 hover:bg-amber-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-amber-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-amber-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 hover:bg-amber-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Find Us</h3>
+                    <div class="h-96 w-full bg-gray-200 rounded-xl overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.431311623139!2d25.967356875005198!3d-24.679095958155597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebb5f953f4295d9%3A0xd2cc6c8b90bb6d14!2sJamali%20Stadium%2C%20Tlokweng!5e0!3m2!1sen!2sbw!4v1716630247180!5m2!1sen!2sbw" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                        <span class="text-white">Glamour</span>Salon
+                    </h3>
+                    <p class="text-gray-400">
+                        Your premier destination for luxury hair care and styling services in New York.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-amber-500 transition duration-300">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Services</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-amber-500 transition duration-300">Our Team</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Haircuts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Coloring</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Styling</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Extensions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Treatments</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <address class="text-gray-400 not-italic">
+                        <p class="mb-2">Plot 5656 Tlokweng</p>
+                        <p class="mb-2">Gaborone, Botswana</p>
+                        <p class="mb-2">Phone: (+267) 74776893</p>
+                        <p>Email: laonemguni@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Glamour Salon. All rights reserved.
+                </p>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Form submission
+        const bookingForm = document.querySelector('.booking-form');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Here you would typically send the form data to a server
+                // For this example, we'll just show an alert
+                alert('Thank you for your booking request! We will contact you shortly to confirm your appointment.');
+                this.reset();
+            });
+        }
+        
+    </script>
+</body>
+</html>

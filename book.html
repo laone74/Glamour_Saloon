@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Glamour Salon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .booking-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stylist-card:hover .stylist-img {
+            transform: scale(1.05);
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .time-slot:hover {
+            background-color: #d4a373 !important;
+            color: white !important;
+        }
+        
+        .selected-slot {
+            background-color: #d4a373 !important;
+            color: white !important;
+            border-color: #d4a373 !important;
+        }
+        
+        .calendar-day:hover:not(.disabled) {
+            background-color: #f5f5f5;
+        }
+        
+        .selected-day {
+            background-color: #d4a373 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-amber-700">
+                    <span class="text-gray-700">Glamour</span>Salon
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">About</a>
+                    <a href="services.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Services</a>
+                    <a href="contact.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="book.html" class="bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                        Book Now
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-amber-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700 hover:text-amber-700">About</a>
+                <a href="services.html" class="block py-2 text-gray-700 hover:text-amber-700">Services</a>
+                <a href="contact.html" class="block py-2 text-gray-700 hover:text-amber-700">Contact</a>
+                <a href="book.html" class="block mt-2 bg-amber-700 text-white px-4 py-2 rounded-full text-center">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="booking-hero bg-cover bg-center min-h-[60vh] flex items-center pt-20">
+        <div class="container mx-auto px-4 py-20 text-white text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Book Your Appointment</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto">Reserve your time with our expert stylists for a personalized beauty experience</p>
+        </div>
+    </section>
+
+    <!-- Booking Process Steps -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-12">
+                <div class="flex items-center">
+                    <div class="flex flex-col items-center mr-8">
+                        <div class="w-12 h-12 rounded-full bg-amber-700 text-white flex items-center justify-center text-xl font-bold mb-2">1</div>
+                        <span class="text-gray-700 font-medium">Select Service</span>
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300 mr-8"></div>
+                    <div class="flex flex-col items-center mr-8">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-xl font-bold mb-2">2</div>
+                        <span class="text-gray-500 font-medium">Choose Stylist</span>
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300 mr-8"></div>
+                    <div class="flex flex-col items-center mr-8">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-xl font-bold mb-2">3</div>
+                        <span class="text-gray-500 font-medium">Pick Date & Time</span>
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300 mr-8"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-xl font-bold mb-2">4</div>
+                        <span class="text-gray-500 font-medium">Confirm Booking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Selection -->
+    <section class="py-12 bg-gray-50" id="service-selection">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Select Your Service</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">Choose from our range of premium services tailored to your beauty needs</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Haircut Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="haircut">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('images/haircuts.jpeg');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Haircut & Styling</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">60 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Professional haircut with shampoo, blow-dry, and finishing touches from our expert stylists.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P65+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coloring Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="coloring">
+                    <div class="h-48 bg-cover bg-center" style="background-image:url('images/hair\ coloring.jpeg'); "></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Full Color Service</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">90 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Complete color transformation using premium, ammonia-free dyes with conditioning treatment.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P120+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Highlights Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="highlights">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('images/partial\ highlights.jpeg');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Partial Highlights</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">120 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Customizable highlights focusing on the top layers for a natural sun-kissed look.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P95+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- treatment Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="treatment">
+                    <div class="h-48 bg-cover bg-center" style="background-image:url('images/keratin.jpeg');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Keratin Treatment</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">150 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Smoothing treatment that eliminates frizz while maintaining natural volume and movement.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P250+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Extension Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="extension">
+                    <div class="h-48 bg-cover bg-center" style="background-image:url('images/hair extension.jpeg');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Hair Extensions</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">180 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Premium 100% human hair extensions applied using the latest tape-in technology.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P300+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bridal Service -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-service="bridal">
+                    <div class="h-48 bg-cover bg-center" style="background-image:url('images/wedding\ style.jpeg');"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Bridal Package</h3>
+                            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">240 min</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Complete bridal experience including trial session, hairstyling, makeup, and veil placement.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-gray-800">P400+</span>
+                            <button class="text-amber-700 hover:text-amber-600 font-medium">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stylist Selection (Hidden Initially) -->
+    <section class="py-12 bg-white hidden" id="stylist-selection">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Choose Your Stylist</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">Our talented team is ready to create your perfect look</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stylist 1 -->
+                <div class="stylist-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-stylist="sarah">
+                    <div class="h-64 bg-cover bg-center stylist-img transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a05d5ae0df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Sarah Johnson</h3>
+                        <p class="text-amber-700 font-medium mb-3">Master Stylist</p>
+                        <p class="text-gray-600 mb-4">Specializes in precision cuts and balayage techniques with 15 years experience.</p>
+                        <div class="flex items-center">
+                            <div class="flex text-amber-500 mr-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm">(428 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stylist 2 -->
+                <div class="stylist-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-stylist="michael">
+                    <div class="h-64 bg-cover bg-center stylist-img transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Michael Chen</h3>
+                        <p class="text-amber-700 font-medium mb-3">Color Specialist</p>
+                        <p class="text-gray-600 mb-4">Expert in vibrant fashion colors and gray coverage with 10 years experience.</p>
+                        <div class="flex items-center">
+                            <div class="flex text-amber-500 mr-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm">(376 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stylist 3 -->
+                <div class="stylist-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-stylist="alexis">
+                    <div class="h-64 bg-cover bg-center stylist-img transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1583864697784-a0efc8379f70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Alexis Rodriguez</h3>
+                        <p class="text-amber-700 font-medium mb-3">Extension Specialist</p>
+                        <p class="text-gray-600 mb-4">Certified in multiple extension methods with 8 years of transformation experience.</p>
+                        <div class="flex items-center">
+                            <div class="flex text-amber-500 mr-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm">(312 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stylist 4 -->
+                <div class="stylist-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300 cursor-pointer" data-stylist="jasmine">
+                    <div class="h-64 bg-cover bg-center stylist-img transition duration-300" style="background-image: url('https://images.unsplash.com/photo-1595475884562-073c30d45670?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Jasmine Williams</h3>
+                        <p class="text-amber-700 font-medium mb-3">Texture Expert</p>
+                        <p class="text-gray-600 mb-4">Specializes in curly and coily hair care with DevaCurl certification.</p>
+                        <div class="flex items-center">
+                            <div class="flex text-amber-500 mr-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm">(289 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="any-stylist-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-8 py-3 rounded-full font-medium transition duration-300 mr-4">
+                    Any Available Stylist
+                </button>
+                <button id="back-to-services" class="text-amber-700 hover:text-amber-600 font-medium px-8 py-3 rounded-full border border-amber-700 transition duration-300">
+                    Back to Services
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Date & Time Selection (Hidden Initially) -->
+    <section class="py-12 bg-gray-50 hidden" id="datetime-selection">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Select Date & Time</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">Choose the perfect time for your appointment</p>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Calendar -->
+                <div class="lg:w-1/2 bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-800">April 2025</h3>
+                        <div class="flex space-x-4">
+                            <button class="calendar-nav text-gray-600 hover:text-amber-700">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="calendar-nav text-gray-600 hover:text-amber-700">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2 mb-4">
+                        <div class="text-center text-gray-500 font-medium text-sm">Sun</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Mon</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Tue</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Wed</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Thu</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Fri</div>
+                        <div class="text-center text-gray-500 font-medium text-sm">Sat</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2">
+                        <div class="calendar-day disabled h-12 flex items-center justify-center text-gray-300 rounded-full">28</div>
+                        <div class="calendar-day disabled h-12 flex items-center justify-center text-gray-300 rounded-full">29</div>
+                        <div class="calendar-day disabled h-12 flex items-center justify-center text-gray-300 rounded-full">30</div>
+                        <div class="calendar-day disabled h-12 flex items-center justify-center text-gray-300 rounded-full">31</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">1</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">2</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">3</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">4</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">5</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">6</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">7</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">8</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">9</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">10</div>
+                        <div class="calendar-day selected-day h-12 flex items-center justify-center text-white rounded-full cursor-pointer font-bold">11</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">12</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">13</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">14</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">15</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">16</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">17</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">18</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">19</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">20</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">21</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">22</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">23</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">24</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">25</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">26</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">27</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">28</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">29</div>
+                        <div class="calendar-day h-12 flex items-center justify-center text-gray-700 rounded-full cursor-pointer hover:bg-gray-100">30</div>
+                        <div class="calendar-day disabled h-12 flex items-center justify-center text-gray-300 rounded-full">1</div>
+                    </div>
+                </div>
+                
+                <!-- Time Slots -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Available Time Slots</h3>
+                        <p class="text-gray-600 mb-6">Sunday, June 11, 2023</p>
+                        
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                9:00 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                9:30 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                10:00 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                10:30 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                11:00 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                11:30 AM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                12:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                12:30 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                1:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                1:30 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                2:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                2:30 PM
+                            </div>
+                            <div class="time-slot selected-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer">
+                                3:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                3:30 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                4:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                4:30 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                5:00 PM
+                            </div>
+                            <div class="time-slot border border-gray-200 py-3 px-2 text-center rounded-lg cursor-pointer hover:border-amber-500">
+                                5:30 PM
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Your Appointment Summary</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Service:</span>
+                                <span class="font-medium text-gray-800">Haircut & Styling</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Stylist:</span>
+                                <span class="font-medium text-gray-800">Sarah Johnson</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Date:</span>
+                                <span class="font-medium text-gray-800">Sun, Jun 11, 2023</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Time:</span>
+                                <span class="font-medium text-gray-800">3:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Duration:</span>
+                                <span class="font-medium text-gray-800">60 minutes</span>
+                            </div>
+                            <div class="flex justify-between border-t border-gray-200 pt-4 mt-2">
+                                <span class="text-gray-600">Total:</span>
+                                <span class="font-bold text-xl text-gray-800">P65</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button id="back-to-stylists" class="flex-1 text-amber-700 hover:text-amber-600 font-medium px-6 py-3 rounded-full border border-amber-700 transition duration-300">
+                                Back to Stylists
+                            </button>
+                            <button id="confirm-booking" class="flex-1 bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-medium transition duration-300">
+                                Confirm Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal (Hidden Initially) -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-100 hidden" id="confirmation-modal">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 mx-4">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-500 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Booking Confirmed!</h3>
+                <p class="text-gray-600">Your appointment has been successfully scheduled.</p>
+            </div>
+            
+            <div class="space-y-4 mb-8">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Confirmation #:</span>
+                    <span class="font-medium text-gray-800">GLM20230611-15</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Service:</span>
+                    <span class="font-medium text-gray-800">Haircut & Styling</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Date & Time:</span>
+                    <span class="font-medium text-gray-800">Sun, Jun 11 at 3:00 PM</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Location:</span>
+                    <span class="font-medium text-gray-800">123 Beauty Ave, Suite 100</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full font-medium text-center transition duration-300">
+                    Back to Home
+                </a>
+                <button id="add-to-calendar" class="border border-amber-700 text-amber-700 hover:bg-amber-50 px-6 py-3 rounded-full font-medium transition duration-300">
+                    <i class="far fa-calendar-plus mr-2"></i> Add to Calendar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                        <span class="text-white">Glamour</span>Salon
+                    </h3>
+                    <p class="text-gray-400">
+                        Your premier destination for luxury hair care and styling services.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-amber-500 transition duration-300">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Haircuts</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Coloring</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Styling</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Extensions</a></li>
+                    </ul>
+                </div>
+                
+               <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <address class="text-gray-400 not-italic">
+                        <p class="mb-2">Plot 5656 Tlokweng</p>
+                        <p class="mb-2">Gaborone, Botswana</p>
+                        <p class="mb-2">Phone: (+267) 72155613</p>
+                        <p>Email: glamoursalon@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2023 Glamour Salon. All rights reserved.
+                </p>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Booking Process Navigation
+        const serviceSelection = document.getElementById('service-selection');
+        const stylistSelection = document.getElementById('stylist-selection');
+        const datetimeSelection = document.getElementById('datetime-selection');
+        const confirmationModal = document.getElementById('confirmation-modal');
+        
+        // Service selection
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                serviceSelection.classList.add('hidden');
+                stylistSelection.classList.remove('hidden');
+                
+                // Update step indicators
+                document.querySelectorAll('.flex.flex-col.items-center:nth-child(1) div').forEach(el => {
+                    el.classList.remove('bg-gray-200', 'text-gray-600');
+                    el.classList.add('bg-amber-700', 'text-white');
+                });
+                document.querySelectorAll('.flex.flex-col.items-center:nth-child(3) div').forEach(el => {
+                    el.classList.remove('bg-gray-200', 'text-gray-600');
+                    el.classList.add('bg-gray-200', 'text-gray-600');
+                });
+                document.querySelectorAll('.flex.flex-col.items-center:nth-child(5) div').forEach(el => {
+                    el.classList.remove('bg-gray-200', 'text-gray-600');
+                    el.classList.add('bg-gray-200', 'text-gray-600');
+                });
+                document.querySelectorAll('.flex.flex-col.items-center:nth-child(7) div').forEach(el => {
+                    el.classList.remove('bg-gray-200', 'text-gray-600');
+                    el.classList.add('bg-gray-200', 'text-gray-600');
+                });
+            });
+        });
+        
+        // Back to services
+        document.getElementById('back-to-services').addEventListener('click', () => {
+            stylistSelection.classList.add('hidden');
+            serviceSelection.classList.remove('hidden');
+            
+            // Reset step indicators
+            document.querySelectorAll('.flex.flex-col.items-center:nth-child(1) div').forEach(el => {
+                el.classList.remove('bg-amber-700', 'text-white');
+                el.classList.add('bg-gray-200', 'text-gray-600');
+            });
+            document.querySelectorAll('.flex.flex-col.items-center:nth-child(3) div').forEach(el => {
+                el.classList.remove('bg-gray-200', 'text-gray-600');
+                el.classList.add('bg-gray-200', 'text-gray-600');
+            });
+        });
+        
+        // Any stylist button
+        document.getElementById('any-stylist-btn').addEventListener('click', () => {
+            stylistSelection.classList.add('hidden');
+            datetimeSelection.classList.remove('hidden');
+            
+            // Update step indicators
+            document.querySelectorAll('.flex.flex-col.items-center:nth-child(3) div').forEach(el => {
+                el.classList.remove('bg-gray-200', 'text-gray-600');
+                el.classList.add('bg-amber-700', 'text-white');
+            });
+        });
+        
+        // Stylist selection
+        document.querySelectorAll('.stylist-card').forEach(card => {
+            card.addEventListener('click', () => {
+                stylistSelection.classList.add('hidden');
+                datetimeSelection.classList.remove('hidden');
+                
+                // Update step indicators
+                document.querySelectorAll('.flex.flex-col.items-center:nth-child(3) div').forEach(el => {
+                    el.classList.remove('bg-gray-200', 'text-gray-600');
+                    el.classList.add('bg-amber-700', 'text-white');
+                });
+            });
+        });
+        
+        // Back to stylists
+        document.getElementById('back-to-stylists').addEventListener('click', () => {
+            datetimeSelection.classList.add('hidden');
+            stylistSelection.classList.remove('hidden');
+        });
+        
+        // Time slot selection
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot').forEach(s => {
+                    s.classList.remove('selected-slot');
+                });
+                this.classList.add('selected-slot');
+            });
+        });
+        
+        // Calendar day selection
+        document.querySelectorAll('.calendar-day:not(.disabled)').forEach(day => {
+            day.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-day').forEach(d => {
+                    d.classList.remove('selected-day');
+                });
+                this.classList.add('selected-day');
+            });
+        });
+        
+        // Confirm booking
+        document.getElementById('confirm-booking').addEventListener('click', () => {
+            datetimeSelection.classList.add('hidden');
+            confirmationModal.classList.remove('hidden');
+            
+            // Update step indicators
+            document.querySelectorAll('.flex.flex-col.items-center:nth-child(5) div').forEach(el => {
+                el.classList.remove('bg-gray-200', 'text-gray-600');
+                el.classList.add('bg-amber-700', 'text-white');
+            });
+        });
+        
+        // Add to calendar
+        document.getElementById('add-to-calendar').addEventListener('click', () => {
+            alert('Added to your calendar!');
+        });
+    </script>
+</body>
+</html>

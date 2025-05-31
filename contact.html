@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Glamour Salon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .contact-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #d4a373;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .form-input:focus {
+            border-color: #d4a373;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+        }
+        
+        .map-container {
+            filter: grayscale(20%);
+            transition: all 0.3s ease;
+        }
+        
+        .map-container:hover {
+            filter: grayscale(0%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-amber-700">
+                    <span class="text-gray-700">Glamour</span>Salon
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">About</a>
+                    <a href="services.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Services</a>
+                    <a href="contact.html" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Contact</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="book.html" class="bg-amber-700 hover:bg-amber-600 text-white px-6 py-2 rounded-full font-medium transition duration-300 transform hover:scale-105">
+                        Book Now
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-amber-700">Home</a>
+                <a href="about.html" class="block py-2 text-gray-700 hover:text-amber-700">About</a>
+                <a href="services.html" class="block py-2 text-gray-700 hover:text-amber-700">Services</a>
+                <a href="contact.html" class="block py-2 text-gray-700 hover:text-amber-700">Contact</a>
+                <a href="book.html" class="block mt-2 bg-amber-700 text-white px-4 py-2 rounded-full text-center">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero bg-cover bg-center min-h-[50vh] flex items-center pt-20">
+        <div class="container mx-auto px-4 py-20 text-white text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Get In Touch</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto">We'd love to hear from you! Reach out for appointments, questions, or just to say hello.</p>
+        </div>
+    </section>
+
+    <!-- Contact Cards Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Phone Card -->
+                <div class="contact-card bg-white p-8 rounded-xl shadow-md text-center transition duration-300">
+                    <div class="bg-amber-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-phone-alt text-amber-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Call Us</h3>
+                    <p class="text-gray-600 mb-4">
+                        Speak directly with our reception team during business hours
+                    </p>
+                    <a href="tel:+12125551234" class="text-amber-700 font-medium hover:text-amber-600 transition duration-300">
+                        (212) 555-1234
+                    </a>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="contact-card bg-white p-8 rounded-xl shadow-md text-center transition duration-300">
+                    <div class="bg-amber-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-envelope text-amber-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Email Us</h3>
+                    <p class="text-gray-600 mb-4">
+                        Send us a message and we'll respond within 24 hours
+                    </p>
+                    <a href="mailto:info@glamoursalon.com" class="text-amber-700 font-medium hover:text-amber-600 transition duration-300">
+                        info@glamoursalon.com
+                    </a>
+                </div>
+                
+                <!-- Visit Card -->
+                <div class="contact-card bg-white p-8 rounded-xl shadow-md text-center transition duration-300">
+                    <div class="bg-amber-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-map-marker-alt text-amber-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Visit Us</h3>
+                    <p class="text-gray-600 mb-4">
+                        Stop by our beautiful salon in downtown New York
+                    </p>
+                    <address class="text-amber-700 font-medium not-italic">
+                        123 Beauty Avenue, Suite 100<br>
+                        New York, NY 10001
+                    </address>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Contact Form -->
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-gray-700 font-medium mb-2">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" 
+                                           class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300"
+                                           required>
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-gray-700 font-medium mb-2">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" 
+                                           class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300"
+                                           required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" 
+                                       class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300"
+                                       required>
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <select id="subject" name="subject" 
+                                        class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300"
+                                        required>
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option value="appointment">Book an Appointment</option>
+                                    <option value="question">General Question</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                                <textarea id="message" name="message" rows="5" 
+                                          class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 transition duration-300"
+                                          required></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full bg-amber-700 hover:bg-amber-600 text-white px-6 py-4 rounded-lg font-medium transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Map & Hours -->
+                <div class="lg:w-1/2">
+                    <!-- Map -->
+                    <div class="map-container mb-8 rounded-xl overflow-hidden shadow-md">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215373510288!2d-73.9878449241642!3d40.74844097138992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1690834240783!5m2!1sen!2sus" 
+                                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <!-- Hours -->
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Salon Hours</h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between border-b border-gray-100 pb-3">
+                                <span class="text-gray-700 font-medium">Monday - Friday</span>
+                                <span class="text-gray-600">9:00 AM - 7:00 PM</span>
+                            </li>
+                            <li class="flex justify-between border-b border-gray-100 pb-3">
+                                <span class="text-gray-700 font-medium">Saturday</span>
+                                <span class="text-gray-600">9:00 AM - 5:00 PM</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-gray-700 font-medium">Sunday</span>
+                                <span class="text-gray-600">Closed</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 bg-amber-50 p-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-exclamation-circle text-amber-700 mr-2"></i>
+                                Holiday Hours
+                            </h4>
+                            <p class="text-gray-600">
+                                We may have special hours during holidays. Please call ahead to confirm availability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                <div class="w-20 h-1 bg-amber-700 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-medium text-gray-800 text-left">How do I book an appointment?</h3>
+                            <i class="fas fa-chevron-down text-amber-700 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                You can book an appointment by calling us at (212) 555-1234, using our online booking system, or filling out the contact form on this page. We recommend booking at least 2 weeks in advance for popular time slots.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-medium text-gray-800 text-left">What is your cancellation policy?</h3>
+                            <i class="fas fa-chevron-down text-amber-700 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                We require at least 24 hours notice for cancellations. Cancellations made less than 24 hours before the appointment may be subject to a fee of 50% of the service cost. No-shows will be charged the full amount of the scheduled service.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-medium text-gray-800 text-left">Do you accept walk-ins?</h3>
+                            <i class="fas fa-chevron-down text-amber-700 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                We do accept walk-ins based on availability, but appointments are strongly recommended to ensure you get the time slot and stylist you prefer. Walk-ins are typically seen within 30 minutes if we have availability.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-medium text-gray-800 text-left">What payment methods do you accept?</h3>
+                            <i class="fas fa-chevron-down text-amber-700 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                We accept all major credit cards (Visa, Mastercard, American Express, Discover), cash, and mobile payments (Apple Pay, Google Pay). We also accept gift certificates purchased through our salon.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 5 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-lg font-medium text-gray-800 text-left">Do you offer gift certificates?</h3>
+                            <i class="fas fa-chevron-down text-amber-700 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                Yes! Gift certificates are available in any denomination and can be purchased in-salon or over the phone. They never expire and can be used for any service or product we offer. Perfect for birthdays, holidays, or just because!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 mb-4">
+                        Didn't find the answer you were looking for?
+                    </p>
+                    <a href="#contactForm" class="inline-block bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                        Ask Your Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-amber-700 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Join Our Beauty Community</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">
+                    Subscribe to our newsletter for exclusive offers, styling tips, and salon updates
+                </p>
+                
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" 
+                           class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800">
+                    <button type="submit" 
+                            class="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg font-medium transition duration-300 whitespace-nowrap">
+                        Subscribe
+                    </button>
+                </form>
+                
+                <p class="text-sm mt-4 opacity-80">
+                    We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-500 mb-4">
+                        <span class="text-white">Glamour</span>Salon
+                    </h3>
+                    <p class="text-gray-400">
+                        Your premier destination for luxury hair care and styling services in New York.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-amber-500 transition duration-300">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Services</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-amber-500 transition duration-300">Our Team</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-amber-500 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Haircuts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Coloring</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Styling</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Extensions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">Treatments</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <address class="text-gray-400 not-italic">
+                        <p class="mb-2">Plot 5656 Tlokweng</p>
+                        <p class="mb-2">Gaborone, Botswana</p>
+                        <p class="mb-2">Phone: (+267) 72155613</p>
+                        <p>Email: glamoursalon@gmail.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Glamour Salon. All rights reserved.
+                </p>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button i
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // FAQ Toggle
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
